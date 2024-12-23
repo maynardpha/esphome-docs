@@ -482,6 +482,39 @@ Configuration examples
       name: My Camera
       # ...
 
+**ESP32-S3-WROOM-1** with Octal PSRAM enabled:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esphome:
+      min_version: 2024.12.0 # may work with earlier versions
+      # many of the S3-WROOM-1 cards have Quad SPI for flash and Octal SPI for PSRAM
+      # the following informs the Arduino Framework to use that configuration
+      platformio_options:
+        board_build.arduino.memory_type: qio_opi
+    
+    esp32:
+      board: esp32-s3-devkitc-1
+      framework:
+        type: arduino
+    
+    esp32_camera:
+      external_clock:
+        pin: GPIO15
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO4
+        scl: GPIO5
+      data_pins: [GPIO11, GPIO9, GPIO8, GPIO10, GPIO12, GPIO18, GPIO17, GPIO16]
+      vsync_pin: GPIO6
+      href_pin: GPIO7
+      pixel_clock_pin: GPIO13
+
+      # Image settings
+      name: My Camera
+      # ...
+
 **Seeed Studio XIAO ESP32S3 Sense**:
 
 .. code-block:: yaml
